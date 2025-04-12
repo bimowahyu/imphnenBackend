@@ -2,6 +2,7 @@ const express = require('express')
 const helmet = require('helmet')
 const rateLimit = require('express-rate-limit')
 const Sequelize = require('sequelize')
+const cors = require('cors')
 const app = express()
 
 const db = new Sequelize('imphnen','root','',{
@@ -17,7 +18,13 @@ const Imphnen = db.define('Imphnen',{
         allowNull: false
     }
 })
-
+app.use(cors({
+    origin: true,
+    credentials: true, 
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    optionsSuccessStatus: 200
+}));
 app.use(helmet({
     contentSecurityPolicy: false, 
     crossOriginEmbedderPolicy: false,
