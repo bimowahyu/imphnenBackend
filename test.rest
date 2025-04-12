@@ -1,0 +1,7 @@
+###
+post http://localhost:1000/createkatakata
+Content-Type: application/json
+
+{
+    "katakata": "null"
+}
